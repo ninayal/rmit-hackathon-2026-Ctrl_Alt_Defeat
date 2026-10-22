@@ -1,6 +1,5 @@
-
 "use client";
-
+import AuthButton from "./components/AuthButton";
 import { useState } from "react";
 import {
   Activity,
@@ -46,6 +45,13 @@ export default function Home() {
   const [scans, setScans] = useState(0);
   const [threats, setThreats] = useState(0);
   const [protectedMessage, setProtectedMessage] = useState("");
+
+  function selectExample(examplePrompt: string) {
+  setPrompt(examplePrompt);
+  setResult(null);
+  setError("");
+  setProtectedMessage("");
+}
 
   async function analyzePrompt() {
     if (!prompt.trim()) return;
@@ -156,6 +162,7 @@ export default function Home() {
           >
             <span className="status-dot" />
             LOCAL DEMO
+            <AuthButton />
           </div>
         </header>
 

@@ -1,4 +1,4 @@
-
+import { auth } from "../../../auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -48,6 +48,27 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   }
+
+  
+  const session = await auth();
+
+  if (!session?.user) {
+    return NextResponse.json(
+      {
+        authorized: false,
+        action,
+        error: "AUTHENTICATION_REQUIRED",
+        message: "Please sign in with TideCloak first.",
+      },
+      {
+        status: 401,
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      }
+    );
+  }
+
 
   // SECURITY: Fail closed.
   //
