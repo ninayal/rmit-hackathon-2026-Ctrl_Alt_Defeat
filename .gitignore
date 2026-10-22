@@ -25,3 +25,15 @@ pnpm-debug.log*
 
 # Local editor settings
 .vscode/
+
+# Python ML environment and generated models
+.venv/
+__pycache__/
+*.joblib
+
+
+# Python ML environment and generated models
+.venv/
+__pycache__/
+*.joblib
+
